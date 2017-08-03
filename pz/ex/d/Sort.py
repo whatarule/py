@@ -16,12 +16,6 @@ def compose(*functions) -> Callable[[Any], Any]:
     )
 
 def splitR(str : str) -> List[str]:
-  '''
-  >>> splitR("1\\n1")
-  ['1', '1']
-  >>> splitR("0\\n99")
-  ['0', '99']
-  '''
   return str.rstrip().split("\n")
 
 def sort(ls : List[int]) -> List[int]:
