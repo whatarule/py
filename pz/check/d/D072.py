@@ -24,7 +24,7 @@ def _t3(f : Callable[[Any, Any, Any], Any]) -> Callable[[Tuple[Any, Any, Any]], 
   return lambda ls: f(*ls)
 def intLs(int : int) -> List[int]:
   return [i + 1 for i in range(int)]
-def noEmpty(ls):
+def noEmpty(ls : List[str]) -> List[str]:
   return [x for x in ls if x != ""]
 
 def _checkV(data : int, vol : int, qt : int) -> bool:

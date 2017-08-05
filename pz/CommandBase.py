@@ -3,6 +3,7 @@ from sys import stdin
 from typing import Callable, List, Tuple, Any
 from builtins import map as _map
 from functools import reduce as _reduce
+from builtins import filter as filter_
 
 def map(function) -> Callable[[list], list]:
   return lambda ls: list(_map(function, ls))
@@ -62,6 +63,22 @@ def nub(ls : list) -> list:
     return ls
   else:
     return [ls[0]] + nub([x for x in ls[1:] if x != ls[0]])
+def _filter(f : Callable[[Any], bool], ls : List[Any]) -> List[Any]:
+  '''
+  >>> filter(lambda x: x == 'S')("SSRSR")
+  ['S', 'S', 'S']
+  '''
+  return _(list, _c2(filter_)(f))(ls)
+def filter(x):
+  return _c2(_filter)(x)
+def _lsX(x : int, ls : List[Any]) -> Any:
+  '''
+  >>> lsX(1)(["5", "SSRSR"])
+  'SSRSR'
+  '''
+  return ls[x]
+def lsX(x):
+  return _c2(_lsX)(x)
 def intLs(int : int) -> List[int]:
   '''
   >>> intLs(15)
@@ -128,6 +145,26 @@ def _mult(x : int, y : int) -> int:
   return x * y
 def mult(x):
   return _c2(_mult)(x)
+def _div(x : int, y : int) -> float:
+  '''
+  >>> div(0)(1)
+  0.0
+  >>> div(1)(3)
+  0.3333333333333333
+  '''
+  return x / y
+def div(x):
+  return _c2(_div)(x)
+
+def average(ls : List[int]) -> float:
+  '''
+  >>> average([50,40,50,60,30,80,100])
+  58.57142857142857
+  '''
+  return reduce(_add)(0)(ls) / len(ls)
+def _round(dec : int, x : float) -> float:
+  return round(x, dec)
+
 
 def add_t(tpl):
   '''
